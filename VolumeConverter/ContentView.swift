@@ -57,7 +57,7 @@ struct ContentView: View {
                     }
                 }.pickerStyle(.segmented)
             }
-            Section("Output: \(outputValue)") {
+            Section("Output: \(outputValue.formatted())") {
                 Picker("Output units", selection: $selectedOutputType) {
                     ForEach(Volumes.allCases) {
                         Text($0.rawValue)
