@@ -20,15 +20,17 @@ struct ContentView: View {
     @State private var selectedOutputType: Volumes = .milliliters
     @State private var input = 0.0
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            ForEach(Volumes.allCases, id: \.id) { volume in
-                Text(volume.rawValue)
+        Form {
+            Section("Input Value") {
+                TextField("Value", value: $input, format: .number)
+                Picker("Units", selection: $selectedInputType) {
+                    ForEach(Volumes.allCases) {
+                        Text($0.rawValue)
+                            .tag($0)
+                    }
+                }.pickerStyle(.segmented)
             }
         }
-        .padding()
     }
 }
 
